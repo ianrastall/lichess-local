@@ -7,7 +7,7 @@ Source: https://github.com/niklasf/chessops
 License: GPL-3.0-or-later
 
 shakmaty 0.30.2
-Source: https://github.com/niklasf/shakmaty/tree/v0.30.2
+Source: https://github.com/niklasf/shakmaty/tree/shakmaty-0.30.2
 License: GPL-3.0-or-later
 
 Fairy-Stockfish 14
