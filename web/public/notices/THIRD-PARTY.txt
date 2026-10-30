@@ -1,0 +1,26 @@
+@lichess-org/chessground 10.4.2
+Source: https://github.com/lichess-org/chessground
+License: GPL-3.0-or-later
+
+chessops 0.15.1
+Source: https://github.com/niklasf/chessops
+License: GPL-3.0-or-later
+
+shakmaty 0.30.2
+Source: https://github.com/niklasf/shakmaty/tree/v0.30.2
+License: GPL-3.0-or-later
+
+Fairy-Stockfish 14
+Source: https://github.com/fairy-stockfish/Fairy-Stockfish/tree/f3e6969d11d1bec17eba26e7ae0e629ad4af71dd
+License: GPL-3.0-or-later
+
+Lichess artwork: see lila-COPYING.md for each set’s original author/license. Some sets are noncommercial.
+
+Lichess opening names: CC0-1.0; see chess-openings-COPYING.txt.
+
+Glicko-2 algorithm: Mark E. Glickman, https://www.glicko.net/glicko/glicko2.pdf
+
+Lichess Local source: https://github.com/ianrastall/lichess-local
+Application code: AGPL-3.0-or-later.
+
+Microsoft WebView2 runtime: separately licensed Microsoft component; offline installer distributed unmodified with a valid Microsoft Authenticode signature.

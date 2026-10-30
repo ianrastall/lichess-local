@@ -1,0 +1,11 @@
+artifacts/
+target/
+node_modules/
+bin/
+obj/
+web/dist/
+.vs/
+*.user
+*.log
+web/test-results/
+web/playwright-report/

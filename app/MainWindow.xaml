@@ -1,0 +1,13 @@
+<Window x:Class="LichessLocal.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Lichess Local">
+ <Grid x:Name="Root" Background="{ThemeResource JupiterWindowBrush}">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+  <MenuBar><MenuBarItem Title="File"><MenuFlyoutItem Text="New game" Click="OnNew"/><MenuFlyoutItem Text="Open PGN…" Click="OnImport"/><MenuFlyoutItem Text="Save PGN…" Click="OnExport"/><MenuFlyoutSeparator/><MenuFlyoutItem Text="Settings…" Click="OnSettings"/><MenuFlyoutSeparator/><MenuFlyoutItem Text="Exit" Click="OnExit"/></MenuBarItem>
+   <MenuBarItem Title="Game"><MenuFlyoutItem Text="Take back" Click="OnUndo"/><MenuFlyoutItem Text="Claim draw" Click="OnClaim"/><MenuFlyoutItem Text="Resign" Click="OnResign"/><MenuFlyoutItem Text="Stop thinking" Click="OnStop"/></MenuBarItem>
+   <MenuBarItem Title="View"><MenuFlyoutItem Text="Flip board" Click="OnFlip"/><MenuFlyoutItem Text="Saved games" Click="OnHistory"/></MenuBarItem>
+   <MenuBarItem Title="Help"><MenuFlyoutItem Text="About Lichess Local" Click="OnAbout"/></MenuBarItem>
+  </MenuBar>
+  <!-- JUP exception: local Chessground workspace, documented in docs/jupiter-exceptions.md. -->
+  <WebView2 x:Name="GameView" Grid.Row="1"/>
+  <TextBlock x:Name="StartupStatus" Grid.Row="1" Text="Opening local game files…" Style="{StaticResource JupiterBodyTextStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="640"/>
+ </Grid>
+</Window>

@@ -1,0 +1,284 @@
+{
+  "revision": "b8849a9d79288a67fc5250be8e470ad5a5954fa4",
+  "pieces": [
+    "cburnett",
+    "merida",
+    "alpha",
+    "pirouetti",
+    "chessnut",
+    "chess7",
+    "reillycraig",
+    "companion",
+    "riohacha",
+    "kosal",
+    "leipzig",
+    "fantasy",
+    "spatial",
+    "celtic",
+    "california",
+    "caliente",
+    "pixel",
+    "firi",
+    "rhosgfx",
+    "maestro",
+    "fresca",
+    "cardinal",
+    "gioco",
+    "tatiana",
+    "staunty",
+    "cooke",
+    "monarchy",
+    "papercut",
+    "minimal-warmth",
+    "governor",
+    "dubrovny",
+    "shahi-ivory-brown",
+    "icpieces",
+    "mpchess",
+    "kiwen-suwi",
+    "totoy",
+    "horsey",
+    "anarcandy",
+    "xkcd",
+    "shapes",
+    "letter",
+    "disguised"
+  ],
+  "pieces3d": [
+    "Basic",
+    "Wood",
+    "Metal",
+    "RedVBlue",
+    "ModernJade",
+    "ModernWood",
+    "Glass",
+    "Trimmed",
+    "Experimental",
+    "Staunton",
+    "CubesAndPi"
+  ],
+  "boards": [
+    {
+      "id": "brown",
+      "file": "brown.png",
+      "kind": "2d"
+    },
+    {
+      "id": "wood",
+      "file": "wood.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "wood2",
+      "file": "wood2.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "wood3",
+      "file": "wood3.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "wood4",
+      "file": "wood4.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "maple",
+      "file": "maple.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "maple2",
+      "file": "maple2.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "horsey",
+      "file": "horsey.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "leather",
+      "file": "leather.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "blue",
+      "file": "blue.png",
+      "kind": "2d"
+    },
+    {
+      "id": "blue2",
+      "file": "blue2.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "blue3",
+      "file": "blue3.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "canvas",
+      "file": "canvas2.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "blue-marble",
+      "file": "blue-marble.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "ic",
+      "file": "ic.png",
+      "kind": "2d"
+    },
+    {
+      "id": "green",
+      "file": "green.png",
+      "kind": "2d"
+    },
+    {
+      "id": "marble",
+      "file": "marble.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "green-plastic",
+      "file": "green-plastic.png",
+      "kind": "2d"
+    },
+    {
+      "id": "olive",
+      "file": "olive.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "grey",
+      "file": "grey.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "metal",
+      "file": "metal.jpg",
+      "kind": "2d"
+    },
+    {
+      "id": "newspaper",
+      "file": "svg/newspaper.svg",
+      "kind": "2d"
+    },
+    {
+      "id": "purple",
+      "file": "purple.png",
+      "kind": "2d"
+    },
+    {
+      "id": "purple-diag",
+      "file": "purple-diag.png",
+      "kind": "2d"
+    },
+    {
+      "id": "pink",
+      "file": "pink-pyramid.png",
+      "kind": "2d"
+    }
+  ],
+  "boards3d": [
+    {
+      "id": "Woodi",
+      "file": "Woodi.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Black-White-Aluminium",
+      "file": "Black-White-Aluminium.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Brushed-Aluminium",
+      "file": "Brushed-Aluminium.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "China-Blue",
+      "file": "China-Blue.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "China-Green",
+      "file": "China-Green.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "China-Grey",
+      "file": "China-Grey.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "China-Scarlet",
+      "file": "China-Scarlet.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "China-Yellow",
+      "file": "China-Yellow.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Classic-Blue",
+      "file": "Classic-Blue.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Gold-Silver",
+      "file": "Gold-Silver.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Green-Glass",
+      "file": "Green-Glass.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Light-Wood",
+      "file": "Light-Wood.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Power-Coated",
+      "file": "Power-Coated.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Purple-Black",
+      "file": "Purple-Black.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Rosewood",
+      "file": "Rosewood.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Wood-Glass",
+      "file": "Wood-Glass.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Marble",
+      "file": "Marble.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Wax",
+      "file": "Wax.webp",
+      "kind": "3d"
+    },
+    {
+      "id": "Jade",
+      "file": "Jade.webp",
+      "kind": "3d"
+    }
+  ]
+}

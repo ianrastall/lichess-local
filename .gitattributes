@@ -1,0 +1,5 @@
+* text=auto eol=lf
+# Upstream receipts refer to original file bytes, including their line endings.
+web/public/** -text
+tools/upstream/** -text
+*.ico binary

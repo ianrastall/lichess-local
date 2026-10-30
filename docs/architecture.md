@@ -1,0 +1,13 @@
+# Architecture and source ownership
+
+The WinUI 3 shell owns Windows activation, file pickers, native settings, window placement and the embedded WebView2 lifecycle. All native windows import Jupiter.UI and pass its style check. The local HTML/TypeScript workspace uses Chessground for presentation, chessops for opening classification and PGN decoding, and original Lichess artwork. Rust/shakmaty is the sole authority for live legal moves and game state; imported moves must pass Rust validation before acceptance. Fairy-Stockfish is an independent hidden UCI child process with private pipes.
+
+`proto/merci.proto` generates both Rust/prost and C#/Google.Protobuf types during builds. The version-1 C ABI has opaque core/result handles, copied result bytes, explicit frees and independently accessible cancellation. The managed binding uses SafeHandle and serializes calls off the UI thread. Request IDs are echoed; game actions carry a revision. Stale actions/engine moves are rejected. A search's process is killed and reaped on cancellation, timeout, failure or normal completion.
+
+The HTML message bridge is restricted to `https://app.local`, a virtual hostname mapped to bundled files. Navigation, pop-ups, permissions and web-resource requests cannot access remote sites. All game assets, opening data and engine code load locally. The desktop app has no accounts, analytics, remote engine or visitor-facing server. Microsoft's independently maintained Evergreen WebView2 runtime may update through its own system updater; the application does not require that connection to play.
+
+Rust persists the active game, result history, players and content preferences in `games.json`, using a synced temporary file and atomic replacement with a previous-version backup. Corrupt/unknown saved formats fail without resetting the file. Clocks run from monotonic elapsed time while the app is open and pause between launches. Appearance/window settings are a separate native file. Uninstall/upgrade scripts do not remove either user-data file.
+
+Upstream game/content components are independent dependencies, not merged repository histories. `upstream-manifest.json` records exact revisions, original paths and SHA-256 hashes. `tools/verify-assets.py` blocks packaging after missing/changed upstream data or an invalid engine hash. Individual artwork licenses and credits are distributed verbatim; application AGPL does not replace asset-specific terms.
+
+The source ZIP includes the actual shared Jupiter.UI files used by this build. That repository has pre-existing local modifications; this project neither commits nor changes them. The ZIP's file manifest makes the delivered source snapshot reviewable without pretending it equals the shared repository's clean HEAD.

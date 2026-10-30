@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <PropertyGroup>
+  <OutputType>WinExe</OutputType><TargetFramework>net10.0-windows10.0.26100.0</TargetFramework><TargetPlatformMinVersion>10.0.26100.0</TargetPlatformMinVersion>
+  <RootNamespace>LichessLocal</RootNamespace><AssemblyName>LichessLocal</AssemblyName><Product>Lichess Local</Product><Version>0.1.0</Version>
+  <ApplicationManifest>app.manifest</ApplicationManifest><ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon><Platforms>x64</Platforms><Platform>x64</Platform><RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  <UseWinUI>true</UseWinUI><WinUISDKReferences>false</WinUISDKReferences><EnableMsixTooling>true</EnableMsixTooling>
+  <WindowsPackageType>None</WindowsPackageType><WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained><SelfContained>true</SelfContained>
+  <LangVersion>14</LangVersion><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><AllowUnsafeBlocks>true</AllowUnsafeBlocks><RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  <RepoRoot>$([MSBuild]::NormalizeDirectory('$(MSBuildProjectDirectory)', '..'))</RepoRoot>
+ </PropertyGroup>
+ <ItemGroup>
+  <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705"/>
+  <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1"/>
+  <ProjectReference Include="..\interop\LichessLocal.Interop.csproj"/>
+  <Compile Remove="NativeCore.cs"/>
+  <None Include="$(RepoRoot)artifacts\rust\release\merci_core.dll" Link="merci_core.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"/>
+  <None Include="$(RepoRoot)web\dist\**\*" Link="Web\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"/>
+  <Content Include="$(RepoRoot)artifacts\engine\fairy-stockfish.exe" Link="Engine\fairy-stockfish.exe" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"/>
+  <Content Include="Assets\AppIcon.ico" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"/>
+  <Content Include="$(RepoRoot)LICENSE" Link="LICENSE.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"/>
+  <Content Include="$(RepoRoot)upstream-manifest.json" Link="upstream-manifest.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"/>
+ </ItemGroup>
+ <Target Name="CopyXamlResourcesToPublish" AfterTargets="Publish">
+  <ItemGroup><XamlResourceFile Include="$(OutDir)$(AssemblyName).pri;$(OutDir)**\*.xbf"/></ItemGroup>
+  <Copy SourceFiles="@(XamlResourceFile)" DestinationFiles="@(XamlResourceFile->'$(PublishDir)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true"/>
+ </Target>
+ <Import Project="$(RepoRoot)..\jupiter-ui\build\Jupiter.UI.targets"/>
+</Project>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'none'"><title>Lichess Local</title></head>
+<body><div id="error" role="alert" hidden></div>
+<main>
+ <aside class="setup-pane" aria-label="Game setup">
+  <h1>Lichess Local</h1><p class="caption">Unofficial · Offline computer play</p>
+  <form id="setup">
+   <label>Player<input id="player" value="Player" list="players" maxlength="60" autocomplete="off"></label><datalist id="players"></datalist>
+   <label>Variant<select id="variant"><option value="chess">Standard chess</option><option value="chess960">Chess960</option><option value="crazyhouse">Crazyhouse</option><option value="kingofthehill">King of the Hill</option><option value="3check">Three-check</option><option value="antichess">Antichess</option><option value="atomic">Atomic</option><option value="horde">Horde</option><option value="racingkings">Racing Kings</option></select></label>
+   <label id="position960" hidden>Chess960 position (0–959)<input id="chess960" type="number" min="0" max="959" value="518"></label>
+   <label>Your pieces<select id="side"><option value="white">White</option><option value="black">Black</option><option value="random">Random</option></select></label>
+   <label>Computer difficulty<select id="level"></select></label><p id="level-detail" class="caption"></p>
+   <div class="row"><label>Minutes<select id="minutes"><option value="0">Untimed</option><option value="1">1</option><option value="3">3</option><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="30">30</option><option value="60">60</option></select></label><label>Increment<select id="increment"><option>0</option><option>1</option><option>2</option><option>3</option><option>5</option><option>10</option><option>30</option></select></label></div>
+   <label class="check"><input id="rated" type="checkbox" checked>Track local progress</label><p class="caption">Scored games use no takebacks or live analysis. Personal scores are local to this app.</p>
+   <details><summary>Starting position</summary><label>FEN<textarea id="start-fen" rows="3" placeholder="Leave empty for the variant’s starting position"></textarea></label><p class="caption">Custom positions are practice games.</p></details>
+   <button id="new-game-menu" class="primary" type="submit">New game</button>
+  </form>
+  <details id="appearance"><summary>Board and pieces</summary>
+   <label>View<select id="view-mode"><option value="2d">2D</option><option value="3d">3D</option></select></label>
+   <label>Piece set<select id="pieces"></select></label>
+   <label>Board<select id="board-theme"></select></label>
+   <div class="row"><label>Light squares<input type="color" id="light-square" value="#f0d9b5"></label><label>Dark squares<input type="color" id="dark-square" value="#b58863"></label></div>
+   <label class="check"><input type="checkbox" id="coordinates" checked>Coordinates</label>
+   <label class="check"><input type="checkbox" id="sound">Move sounds</label>
+   <button type="button" id="app-settings">App appearance…</button>
+  </details>
+  <button id="show-history" type="button">Saved games</button><button id="import" type="button">Open PGN…</button>
+ </aside>
+ <section class="play-pane" aria-label="Computer game">
+  <div class="player-strip"><div><strong id="opponent">Fairy-Stockfish 14</strong><span class="caption" id="game-info">Choose a variant and difficulty</span></div><output id="computer-clock" class="clock">∞</output></div>
+  <div id="pocket-top" class="pocket" aria-label="Computer pocket" hidden></div>
+  <div class="board-surround"><div id="board" class="cg-wrap"></div></div>
+  <div id="pocket-bottom" class="pocket" aria-label="Your pocket" hidden></div>
+  <div class="player-strip"><div><strong id="human-name">Player</strong><span class="caption" id="turn-status" role="status" aria-live="polite">Ready</span></div><output id="human-clock" class="clock">∞</output></div>
+  <div class="game-actions"><button id="undo">Take back</button><button id="flip">Flip board</button><button id="claim">Claim draw</button><button id="resign">Resign</button><button id="retry" hidden>Retry computer move</button><button id="cancel" hidden>Stop thinking</button></div>
+  <form id="move-form" class="move-input"><label for="move-input">Keyboard move</label><input id="move-input" placeholder="e4, Nf3 or e2e4" autocomplete="off" maxlength="12"><button type="submit">Play move</button></form>
+  <details><summary>Text board</summary><div id="text-board" role="group" aria-label="Position"></div></details>
+ </section>
+ <aside class="game-pane" aria-label="Moves and progress">
+  <div class="pane-heading"><h2>Game</h2><button id="export">Save PGN…</button></div>
+  <p id="opening" class="caption"></p>
+  <div id="result" role="status" hidden></div>
+  <div id="moves" aria-label="Move list"></div>
+  <nav class="replay" aria-label="Replay controls"><button id="first" title="First position" aria-label="First position">|‹</button><button id="previous" title="Previous move" aria-label="Previous move">‹</button><button id="next" title="Next move" aria-label="Next move">›</button><button id="last" title="Current position" aria-label="Current position">›|</button></nav>
+  <div class="row"><button id="analyze">Analyse position</button><button id="continue">Play from here</button></div><output id="analysis" hidden></output>
+  <section id="progress" aria-labelledby="progress-title"><h2 id="progress-title">Personal progress</h2><p class="caption" id="pool"></p><div class="score-line"><strong id="score">1500?</strong><span>Local progress score</span></div><p id="score-details" class="caption">Play scored games to establish a personal record.</p><svg id="trend" viewBox="0 0 260 64" role="img" aria-label="Local progress score history"></svg><p class="caption">Experimental Glicko-2 app scale. Not a Lichess or FIDE rating.</p>
+   <details><summary>How this score works</summary><p class="caption">Each level has a fixed reference value on this app’s own scale. These values are not calibrated human Elo. The score and uncertainty track your results here, separately for each variant and time-control group. A question mark means the score is provisional. Practice games do not change it.</p></details>
+   <table id="level-results"><caption>Your results by level</caption><thead><tr><th>Level</th><th>W</th><th>D</th><th>L</th></tr></thead><tbody></tbody></table>
+  </section>
+ </aside>
+</main>
+<footer><span id="engine-status">Local files · No account or connection required</span><button id="about">About and credits</button></footer>
+<dialog id="confirm-dialog"><form method="dialog"><h2 id="confirm-title"></h2><p id="confirm-text"></p><div class="row"><button value="cancel">Cancel</button><button value="ok" id="confirm-ok">Continue</button></div></form></dialog>
+<dialog id="promotion"><h2>Promote pawn</h2><div id="promotion-choices"></div><button id="cancel-promotion">Cancel</button></dialog>
+<dialog id="history-dialog"><div class="pane-heading"><h2>Saved games</h2><button id="close-history">Close</button></div><div id="history-list"></div></dialog>
+<dialog id="about-dialog"><h2>About Lichess Local</h2><p>Unofficial offline app for playing against a computer. Not affiliated with or endorsed by Lichess.</p><p>Built with Chessground, chessops, shakmaty, Fairy-Stockfish, and Lichess opening names and artwork. Game data and progress stay on this computer.</p><p>Application code: AGPL-3.0-or-later. Artwork retains its individual licenses, including noncommercial terms for some sets.</p><p><a href="notices/lila-COPYING.md" target="_blank">Artwork credits and licenses</a> · <a href="notices/THIRD-PARTY.txt" target="_blank">Component sources and licenses</a></p><p id="build-info">Version 0.1.0 · Source: github.com/ianrastall/lichess-local</p><button id="close-about">Close</button></dialog>
+<script type="module" src="/src/main.ts"></script></body></html>

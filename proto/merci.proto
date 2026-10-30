@@ -1,0 +1,82 @@
+syntax = "proto3";
+package merci;
+option csharp_namespace = "LichessLocal.Protocol";
+message Config { string directory = 1; string engine = 2; }
+
+message GameOptions {
+  string variant = 1;
+  string side = 2;
+  int32 level = 3;
+  int32 minutes = 4;
+  int32 increment = 5;
+  bool rated = 6;
+  string fen = 7;
+  string player = 8;
+  uint32 chess960 = 9;
+}
+message Request {
+  uint64 request_id = 1;
+  string action = 2;
+  uint64 revision = 3;
+  GameOptions options = 4;
+  string text = 5;
+  int32 index = 6;
+  string key = 7;
+  string value = 8;
+}
+message MoveRecord { string uci = 1; string san = 2; string fen = 3; }
+message Rating {
+  double value = 1;
+  double deviation = 2;
+  double volatility = 3;
+  uint32 games = 4;
+  uint32 wins = 5;
+  uint32 draws = 6;
+  uint32 losses = 7;
+}
+message LevelResult { int32 level = 1; uint32 wins = 2; uint32 draws = 3; uint32 losses = 4; }
+message Progress {
+  string pool = 1;
+  Rating rating = 2;
+  repeated LevelResult levels = 3;
+  repeated double trend = 4;
+  bool calibrated = 5;
+}
+message LegalMove { string uci = 1; string from = 2; string to = 3; string promotion = 4; string role = 5; }
+message GameSummary {
+  string id = 1;
+  string date = 2;
+  string variant = 3;
+  int32 level = 4;
+  string result = 5;
+  bool rated = 6;
+  string player = 7;
+  string time_control = 8;
+  uint32 plies = 9;
+}
+message Snapshot {
+  uint64 revision = 1;
+  string id = 2;
+  GameOptions options = 3;
+  string fen = 4;
+  string turn = 5;
+  repeated LegalMove legal = 6;
+  repeated MoveRecord moves = 7;
+  string status = 8;
+  string result = 9;
+  string reason = 10;
+  bool check = 11;
+  bool can_claim = 12;
+  double white_ms = 13;
+  double black_ms = 14;
+  string pgn = 15;
+  Progress progress = 16;
+  repeated GameSummary history = 17;
+  string engine = 18;
+  map<string,string> preferences = 19;
+  repeated string players = 20;
+  string analysis = 21;
+  string rating_note = 22;
+  string initial_fen = 23;
+}
+message Response { uint64 request_id = 1; bool ok = 2; string error = 3; Snapshot snapshot = 4; }
